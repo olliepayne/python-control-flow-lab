@@ -20,28 +20,43 @@
 # After setting the likely season, you can use another if...elif...else statement to "adjust" if
 # the day number falls within a certain range.
 
-seasons = {
-  'winter': {
-    'months': ['Dec', 'Jan', 'Feb', 'Mar'],
-    'startDate': 'Dec 21',
-    'endDate': 'Mar 19'
-  },
-  'spring': {
-    'months': ['Mar', 'Apr', 'May', 'Jun'],
-    'startDate': 'Mar 20',
-    'endDate': 'Jun 20'
-  },
-  'summer': {
-    'months': ['Jun', 'Jul', 'Aug', 'Sep'],
-    'startDate': 'Jun 21',
-    'endDate': 'Sep 21'
-  },
-  'fall': {
-    'months': ['Sep', 'Oct', 'Nov', 'Dec'],
-    'startDate': 'Sep 22',
-    'endDate': 'Dec 20'
-  }
-}
+class Season:
+  name = ''
+  months = []
+  startDate = ''
+  endDate = ''
+  def __init__(self, name, months, startDate, endDate):
+    self.name = name
+    self.months = months
+    self.startDate = startDate
+    self.endDate = endDate
+
+winter = Season('winter', ['Dec', 'Jan', 'Feb', 'Mar'], 'Dec 21', 'Mar 19')
+
+seasons = [winter]
+
+# seasons = {
+#   'winter': {
+#     'months': ['Dec', 'Jan', 'Feb', 'Mar'],
+#     'startDate': 'Dec 21',
+#     'endDate': 'Mar 19'
+#   },
+#   'spring': {
+#     'months': ['Mar', 'Apr', 'May', 'Jun'],
+#     'startDate': 'Mar 20',
+#     'endDate': 'Jun 20'
+#   },
+#   'summer': {
+#     'months': ['Jun', 'Jul', 'Aug', 'Sep'],
+#     'startDate': 'Jun 21',
+#     'endDate': 'Sep 21'
+#   },
+#   'fall': {
+#     'months': ['Sep', 'Oct', 'Nov', 'Dec'],
+#     'startDate': 'Sep 22',
+#     'endDate': 'Dec 20'
+#   }
+# }
 
 def checkSeason():
   userMonth = input('Enter the month of the year (Jan - Dec): ')
