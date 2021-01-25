@@ -12,10 +12,10 @@
 #         For example, if some_char in 'abc':
 
 vowels = ['a', 'e', 'i', 'o', 'u']
-userStr = input('Please enter a letter from the alphabet (a-z or A-Z): ')
-def checkVowel():
-  for letter in userStr:
-    for vowel in vowels:
-      if letter == vowel:
-        print(f'letter {letter} is a vowel')
-        break
+
+userLetter = input('Please enter a letter from the alphabet (a-z or A-Z): ')
+
+if userLetter in vowels:
+  print(f'The letter {userLetter} is a vowel')
+else:
+  print(f'The letter {userLetter} is a consonant')  
