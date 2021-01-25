@@ -20,11 +20,9 @@
 # After setting the likely season, you can use another if...elif...else statement to "adjust" if
 # the day number falls within a certain range.
 
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
 class Season:
-  name = ''
-  months = []
-  startDate = ''
-  endDate = ''
   def __init__(self, name, months, startDate, endDate):
     self.name = name
     self.months = months
@@ -32,34 +30,43 @@ class Season:
     self.endDate = endDate
 
 winter = Season('winter', ['Dec', 'Jan', 'Feb', 'Mar'], 'Dec 21', 'Mar 19')
+spring = Season('spring', ['Mar', 'Apr', 'May', 'Jun'], 'Mar 20', 'Jun 20')
+summer = Season('summer', ['Jun', 'Jul', 'Aug', 'Sep'], 'Jun 21', 'Sep 21')
+fall = Season('fall', ['Sep', 'Oct', 'Nov', 'Dec'], 'Sep 22', 'Dec 20')
 
-seasons = [winter]
-
-# seasons = {
-#   'winter': {
-#     'months': ['Dec', 'Jan', 'Feb', 'Mar'],
-#     'startDate': 'Dec 21',
-#     'endDate': 'Mar 19'
-#   },
-#   'spring': {
-#     'months': ['Mar', 'Apr', 'May', 'Jun'],
-#     'startDate': 'Mar 20',
-#     'endDate': 'Jun 20'
-#   },
-#   'summer': {
-#     'months': ['Jun', 'Jul', 'Aug', 'Sep'],
-#     'startDate': 'Jun 21',
-#     'endDate': 'Sep 21'
-#   },
-#   'fall': {
-#     'months': ['Sep', 'Oct', 'Nov', 'Dec'],
-#     'startDate': 'Sep 22',
-#     'endDate': 'Dec 20'
-#   }
-# }
+seasons = [winter, spring, summer, fall]
 
 def checkSeason():
   userMonth = input('Enter the month of the year (Jan - Dec): ')
   userDay = input('Enter the day of the month: ')
+  if userMonth not in months:
+    input('Please enter a valid month [enter...]')
+    print('- - - - - -')
+    checkSeason()
+  
+  if int(userDay) == 0 or int(userDay) > 31:
+    input('Please enter a valid day [enter...]')
+    checkSeason()
+
+  currentSeason = ''
+
+  for season in seasons:
+    if userMonth in season.months:
+      startMonth = season.startDate[0:3]
+      startDay = season.startDate[4:6]
+
+      endMonth = season.endDate[0:3]
+      endDay = season.endDate[4:6]
+
+      if userMonth == startMonth and userDay >= startDay:
+        currentSeason = season.name
+      elif userMonth == endMonth and userDay <= endDay:
+        currentSeason = season.name
+      elif season.months.index(userMonth) >= season.months.index(startMonth) and season.months.index(userMonth) <= season.months.index(endMonth):
+          currentSeason = season.name
+
+  print(f'{userMonth} {userDay} is in {currentSeason} ')
+  print('- - - - - -')
+  checkSeason()
 
 checkSeason()
