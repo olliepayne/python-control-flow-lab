@@ -40,12 +40,12 @@ def checkSeason():
   userMonth = input('Enter the month of the year (Jan - Dec): ')
   userDay = int(input('Enter the day of the month: '))
   if userMonth not in months:
-    input('Please enter a valid month [enter...]')
+    input('Please enter a valid month [RESTART]')
     print('- - - - - -')
     checkSeason()
   
   if userDay == 0 or userDay > 31:
-    input('Please enter a valid day [enter...]')
+    input('Please enter a valid day [RESTART]')
     checkSeason()
 
   currentSeason = ''
@@ -58,12 +58,12 @@ def checkSeason():
       endMonth = season.endDate[0:3]
       endDay = int(season.endDate[4:6])
 
-      if userMonth == startMonth and userDay >= startDay:
+      if season.months.index(userMonth) >= season.months.index(startMonth) and season.months.index(userMonth) <= season.months.index(endMonth):
         currentSeason = season.name
-      elif userMonth == endMonth and userDay <= endDay:
-        currentSeason = season.name
-      elif season.months.index(userMonth) >= season.months.index(startMonth) and season.months.index(userMonth) <= season.months.index(endMonth):
-          currentSeason = season.name
+        if userMonth == startMonth and userDay < startDay:
+          currentSeason = ''
+        elif userMonth == endMonth and userDay > endDay:
+          currentSeason = ''
 
   print(f'{userMonth} {userDay} is in {currentSeason} ')
   print('- - - - - -')
