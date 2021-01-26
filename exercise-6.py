@@ -65,6 +65,9 @@ def checkSeason():
         elif userMonth == endMonth and userDay > endDay:
           currentSeason = ''
 
+      if currentSeason != '':
+        break
+
   print(f'{userMonth} {userDay} is in {currentSeason} ')
   print('- - - - - -')
   checkSeason()
