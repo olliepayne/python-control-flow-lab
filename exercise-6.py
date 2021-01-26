@@ -38,13 +38,13 @@ seasons = [winter, spring, summer, fall]
 
 def checkSeason():
   userMonth = input('Enter the month of the year (Jan - Dec): ')
-  userDay = input('Enter the day of the month: ')
+  userDay = int(input('Enter the day of the month: '))
   if userMonth not in months:
     input('Please enter a valid month [enter...]')
     print('- - - - - -')
     checkSeason()
   
-  if int(userDay) == 0 or int(userDay) > 31:
+  if userDay == 0 or userDay > 31:
     input('Please enter a valid day [enter...]')
     checkSeason()
 
@@ -53,10 +53,10 @@ def checkSeason():
   for season in seasons:
     if userMonth in season.months:
       startMonth = season.startDate[0:3]
-      startDay = season.startDate[4:6]
+      startDay = int(season.startDate[4:6])
 
       endMonth = season.endDate[0:3]
-      endDay = season.endDate[4:6]
+      endDay = int(season.endDate[4:6])
 
       if userMonth == startMonth and userDay >= startDay:
         currentSeason = season.name
